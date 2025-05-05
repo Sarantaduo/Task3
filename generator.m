@@ -28,21 +28,22 @@ errors = zeros(size(frequencies));
         decimated = decimate_2x(original);
         interpolated = interpolate_2x(decimated);
 
-        subplot(1,3,1);
+        subplot(3,1,1);
+        plot(round(original,10));
         xlabel('Частота сигнала, Гц');
         ylabel('Амплитуда');
-        title('Исходный сигнал');
-        plot(round(original,10));
-        subplot(1,3,2);
+        title(['Исходный сигнал при ' num2str(f) ' Гц']);
+
+        subplot(3,1,2);
+        plot(round(decimated,10));
         xlabel('Частота сигнала, Гц');
         ylabel('Амплитуда');
         title('Cигнал после децимации');
-        plot(round(decimated,10));
-        subplot(1,3,3);
+        subplot(3,1,3);
+        plot(round(interpolated,10));
         xlabel('Частота сигнала, Гц');
         ylabel('Амплитуда');
         title('Cигнал после интерполяции');
-        plot(round(interpolated,10));
 
         errors(i) = sqrt(mean((original - interpolated).^2));
     end
